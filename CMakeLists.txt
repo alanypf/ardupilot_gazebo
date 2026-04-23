@@ -115,6 +115,30 @@ target_link_libraries(ParachutePlugin PRIVATE
   gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
 )
 
+add_library(PropellerPerformancePlugin
+  SHARED
+  src/PropellerPerformancePlugin.cc
+)
+target_include_directories(PropellerPerformancePlugin PRIVATE
+  include
+)
+target_compile_features(PropellerPerformancePlugin PRIVATE cxx_std_17)
+target_link_libraries(PropellerPerformancePlugin PRIVATE
+  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
+)
+
+add_library(LiftDragRotorPlugin
+  SHARED
+  src/LiftDragRotor.cc
+)
+target_include_directories(LiftDragRotorPlugin PRIVATE
+  include
+)
+target_compile_features(LiftDragRotorPlugin PRIVATE cxx_std_17)
+target_link_libraries(LiftDragRotorPlugin PRIVATE
+  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
+)
+
 add_library(CameraZoomPlugin
   SHARED
   src/CameraZoomPlugin.cc
@@ -150,6 +174,8 @@ install(
   TARGETS
   ArduPilotPlugin
   ParachutePlugin
+  PropellerPerformancePlugin
+  LiftDragRotorPlugin
   CameraZoomPlugin
   GstCameraPlugin
   DESTINATION lib/${PROJECT_NAME}
