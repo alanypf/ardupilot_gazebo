@@ -139,6 +139,17 @@ target_link_libraries(LiftDragRotorPlugin PRIVATE
   gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
 )
 
+add_library(AdvancedLiftDragViternaPlugin
+  SHARED
+  src/AdvancedLiftDragViterna.cc
+)
+target_include_directories(AdvancedLiftDragViternaPlugin PRIVATE
+  include
+)
+target_compile_features(AdvancedLiftDragViternaPlugin PRIVATE cxx_std_17)
+target_link_libraries(AdvancedLiftDragViternaPlugin PRIVATE
+  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
+)
 add_library(CameraZoomPlugin
   SHARED
   src/CameraZoomPlugin.cc
@@ -176,6 +187,7 @@ install(
   ParachutePlugin
   PropellerPerformancePlugin
   LiftDragRotorPlugin
+  AdvancedLiftDragViternaPlugin
   CameraZoomPlugin
   GstCameraPlugin
   DESTINATION lib/${PROJECT_NAME}
